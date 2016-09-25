@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Viewer</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/wpviewer.css"  media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    
+    <header>
+        <nav class="amber lighten-5">
+            <div class="nav-wrapper">
+
+                <div id="mainNavbar">
+                    <a href="#!" class="left brand-logo yellow-text text-darken-3">Wikipedia Viewer</a>
+                    <ul class="right">
+                        <li id="searchWP">
+                            <a class="waves-effect waves-orange btn-flat yellow-text text-darken-4">
+                                <i class="material-icons left yellow-text text-darken-4">search</i>
+                                <span class="largeDetail">Search Wikipedia</span>
+                            </a>
+                        </li>
+                        <li id="randomWP">
+                            <a class="waves-effect waves-orange btn-flat yellow-text text-darken-4">
+                                <i class="material-icons left yellow-text text-darken-4">cloud</i>
+                                <span class="largeDetail">Random Article</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <form class="hide">
+                    <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label for="search"><i  class="material-icons yellow-text text-darken-4">search</i></label>
+                    <i id="closeSearch" class="material-icons yellow-text text-darken-4">close</i>
+                    </div>
+                </form>
+
+            </div>
+        </nav>
+    </header>
+                        
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col offset-s3 s6">
+                    <article id="searchTitleBox" class="card-panel z-depth-1">
+                        <span id="searchTitle" class="orange-text text-darken-4">Wikipedia Result Title</span>
+                    </article>
+                </div>
+            </div>
+            <section class="results">
+                <div class="divider"></div>
+                <a href="#!" target="_blank">
+                    <article class="card-panel result-card hoverable amber lighten-4 z-depth-1">
+                        <span class="title orange-text text-darken-4">Wikipedia Result Title</span> : <span class="description grey-text text-darken-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab eum laborum reprehenderit explicabo a quam quos eos cumque quo beatae, distinctio fuga sunt maxime, facere aperiam, tempora provident culpa voluptatem!</span>
+                    </article>
+                </a>
+                <div class="divider"></div>
+                <article class="card-panel result-card hoverable amber lighten-4 z-depth-1">
+                    <span class="title orange-text text-darken-4">Wikipedia Result Title</span> : <span class="description grey-text text-darken-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab eum laborum reprehenderit explicabo a quam quos eos cumque quo beatae, distinctio fuga sunt maxime, facere aperiam, tempora provident culpa voluptatem!</span>
+                </article>
+            </section>
+
+
+        </div>
+    </main>
+
+    <div id="test"></div>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/wpviewer.js"></script>
+</body>
+</html>

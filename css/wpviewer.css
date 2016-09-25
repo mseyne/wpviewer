@@ -1,0 +1,53 @@
+.brand-logo {
+    margin-left: 10px;
+}
+
+#searchTitleBox{
+    margin-top: 40px;
+}
+
+.result-card {
+    margin-top: 20px;
+}
+
+#searchTitle {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.description {
+    font-weight: 300;
+}
+
+nav i {
+    height: inherit !important;
+    line-height: inherit !important;
+}
+
+@media (max-width: 768px) {
+  .largeDetail {
+    display: none;
+  }
+
+  #searchWP a, 
+  #randomWP a{
+      padding: 0;
+      margin: 0;
+      margin-right: 5px;
+  }
+
+  #searchWP a i, 
+  #randomWP a i{
+      margin: 0 10px;
+      clear: both;
+      text-align: center;
+  }
+
+}
