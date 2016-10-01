@@ -65,3 +65,7 @@ nav i {
 footer .material-icons{
     font-size: 30px;
 }
+
+.card-action a {
+    text-transform: lowercase !important;
+}

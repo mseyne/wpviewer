@@ -1,6 +1,7 @@
 var searchValue = '';
 var resultJSON;
 var numbResult = 10;
+var toReplace = ['<p>','</p>', '<h2>', '</h2>', '<br />', '<br/>', '<ul>', '<li>', '</ul>', '</li>', '<h3>', '</h3>', '<ol>', '</ol>'];
 
 function displaySearchBar(){
     $('#mainNavbar').addClass('hide');
@@ -58,33 +59,58 @@ var getWikipediaRandom = function(){
     });
 }
 
-var createRandomCard = function(){
+var createRandomCard = function() {
     $('#randomCard').html('');
-    // console.log(resultJSON.query.pages);
-    for ( var data in resultJSON.query.pages){
+
+    for ( var data in resultJSON.query.pages) {
         var array = resultJSON.query.pages[data];
         var title = array.title;
         var extract = array.extract;
-        var image = array.images[0].title;
+        toReplace.forEach(function(element) {
+            extract = extract.split(element).join("");
+        });
+        var image = getImageUrl(array.images);
         var link = "https://en.wikipedia.org/wiki/" + title;
     }
     displayRandomCard(title, extract, image, link)
 }
 
-var displayRandomCard = function(title, extract, image, link){
-    var newCard = '<div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Fox_study_6.jpg/159px-Fox_study_6.jpg"></div>'
-    + '<div class="card-stacked"><div class="card-content"><div class="center-align"><h5 class="orange-text"> ' + title + ' </h5></div>'
-    + extract + '</div><div class="card-action"><a href="' + link + '">' + title + '</a></div></div>';
+var displayRandomCard = function(title, extract, image, link) {
+    var newCard = '<div class="card-image"><img src=""></div><div class="card-stacked"><div class="card-content">'
+    + '<div class="center-align"><h5 class="orange-text"> ' + title + ' </h5></div>'
+    + extract + '</div><div class="card-action"><a href="' + link + '">' + link + '</a></div></div>';
     $('#randomCard').append(newCard);
+    $('#randomCard').show();
 }
 
-$('document').ready(function(){
+var getImageUrl = function(img) {
+    var imgUrl = 'https://upload.wikimedia.org/wikipedia/commons/b/b3/Wikipedia-logo-v2-en.svg';
 
-    $('#searchWP').on('click', function(){
+    if (img !== undefined) {
+        img = img[0].title;
+        console.log(img);
+        console.log("https://commons.wikimedia.org/wiki/" + img);
+        $.getJSON('https://commons.wikimedia.org/w/api.php?action=query&titles=' + img + '&prop=imageinfo&iiprop=url&format=json&callback=?', function(data){
+            for ( var dt in data.query.pages) {
+                console.log(data.query.pages[dt].imageinfo !== undefined);
+                if (data.query.pages[dt].imageinfo !== undefined) {
+                    console.log(data.query.pages[dt].imageinfo[0].url);
+                    imgUrl = data.query.pages[dt].imageinfo[0].url;
+                }
+            }
+            console.log("imgUrl", imgUrl);
+            $('.card-image > img').attr('src', imgUrl);
+        });
+    }
+}
+
+$('document').ready(function() {
+
+    $('#searchWP').on('click', function() {
         displaySearchBar();
     });
 
-    $('#closeSearch').on('click', function(){
+    $('#closeSearch').on('click', function() {
         hideSearchBar();
     });
 
@@ -106,6 +132,7 @@ $('document').ready(function(){
     });
 
     $('#search').bind("enterKeyPressed",function(e){
+        $('#randomCard').hide();
         searchValue = $('#search').val();
         hideSearchBar();
         if (searchValue.length > 0){
